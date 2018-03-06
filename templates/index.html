@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LED Control</title>
+</head>
+<body>
+Welcome to the LED Control<br>
+{% if function %}
+Current function: {{ function }}<br>
+{% else %}
+No running function<br>
+{% endif %}
+
+<form action="/white" method="get">
+    <p>White <input type="submit" value="Go"></p>
+</form>
+
+<form action="/color_temp" method="get">
+    <p><span style="display:block; float: left;">Color Temperature:&nbsp;&nbsp;</span>
+        <span style="display:block; float: left; min-width: 60px; width: 60px;" id="color_temp_val"></span>
+        <input type="range" min="500" max="20000" value="5500" name="color_temp" id="color_temp">
+        <input type="submit" value="Go">
+    </p>
+    <script>
+    var slider = document.getElementById("color_temp");
+    var output = document.getElementById("color_temp_val");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function() {
+      output.innerHTML = this.value;
+    }
+    </script>
+</form>
+
+<form action="/color" method="get">
+  Set color:
+  <input type="color" name="color" value="#ff0000">
+  <input type="submit" value="Go">
+</form>
+
+<form action="/rainbow" method="get">
+    <p>Rainbow <input type="submit" value="Go"></p>
+</form>
+<form action="/rainbow_onecolor" method="get">
+    <p>Rainbow with single color <input type="submit" value="Go"></p>
+</form>
+
+
+</body>
